@@ -1,0 +1,1 @@
+export { ContactsModuleTemplate } from "./contacts";

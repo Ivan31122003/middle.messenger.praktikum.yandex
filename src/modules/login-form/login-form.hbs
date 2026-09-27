@@ -1,0 +1,15 @@
+<form class="login-form">
+  <h1 class="login-form__title">Вход</h1>
+  <div class="login-form__login">
+    {{> pr-input variant="field" placeholder="Логин" validationMessage="Проверка стилей ошибки валидации"}}
+  </div>
+  <div class="login-form__password">
+    {{> pr-input variant="field" placeholder="Пароль" type="password"}}
+  </div>
+  <div class="login-form__auth">
+    {{> pr-button variant="primary" text="Авторизоваться" }}
+  </div>
+  <a class="login-form__registration-link" href="/registration">
+    Нет аккаунта?
+  </a>
+</form>

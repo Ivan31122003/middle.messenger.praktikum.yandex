@@ -1,0 +1,30 @@
+@use "@/styles/variables" as v;
+
+.pr-button {
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 5%;
+  text-align: center;
+  cursor: pointer;
+
+  &--primary {
+    padding: 12px 0;
+    width: 100%;
+    background-color: v.$color-accent;
+    color: v.$color-light;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}

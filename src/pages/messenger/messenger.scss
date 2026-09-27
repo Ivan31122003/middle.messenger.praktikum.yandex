@@ -1,0 +1,24 @@
+@use "@/styles/variables.scss" as v;
+
+.messenger {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  &__contacts {
+    flex: 0 0 20%;
+  }
+
+  &__chat {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__bolvanka {
+    color: v.$color-gray-500;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
