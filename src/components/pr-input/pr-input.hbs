@@ -1,12 +1,13 @@
 <div class="pr-input">
   {{#if (eq variant "field")}}
-    <label id="{{placeholder}}" class="pr-input__placeholder">
+    <label class="pr-input__placeholder">
       {{placeholder}} 
     </label>
   {{/if}}
   <input
-    id="{{placeholder}}"
-    class="pr-input__input {{#if (eq variant "field")}}pr-input__input--field{{else}}pr-input__input--base{{/if}}"
+    class="pr-input__input pr-input__input{{#if (eq variant "field")}}--field{{else}}--base{{/if}}"
+    value="{{value}}"
+    name="{{name}}"
     type="{{#if type}}{{type}}{{else}}text{{/if}}"
     placeholder="{{#if (eq variant "field")}}{{else}}{{placeholder}}{{/if}}"
   />

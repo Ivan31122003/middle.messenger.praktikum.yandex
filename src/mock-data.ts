@@ -1,19 +1,21 @@
 interface User {
+  avatar: File | null;
   email: string;
   login: string;
-  name: string;
-  surname: string;
-  chatName: string;
+  first_name: string;
+  second_name: string;
+  display_name: string;
   phone: string;
 }
 
 const user: User = {
+  avatar: null,
   email: "pochta@yandex.ru",
   login: "ivanivanov",
-  name: "Иван",
-  surname: "Иванов",
-  chatName: "Иван",
-  phone: "+7 (909) 967 30 30",
+  first_name: "Иван",
+  second_name: "Иванов",
+  display_name: "Иван",
+  phone: "+7 (909) 967-30-30",
 };
 
 interface Contact {

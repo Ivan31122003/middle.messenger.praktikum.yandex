@@ -1,4 +1,5 @@
 import type { Route, Path } from "./types";
+import { profileData } from "@/pages/profile";
 
 export const PAGE_404: Route = {
   type: "page",
@@ -29,5 +30,6 @@ export const ROUTES: Record<Path, Route> = {
   "/profile": {
     type: "page",
     loader: () => import("@/pages/profile"),
+    data: profileData,
   },
 };

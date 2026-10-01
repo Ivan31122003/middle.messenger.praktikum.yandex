@@ -1,0 +1,29 @@
+@use "@/styles/variables.scss" as v;
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 10px 0;
+  display: flex;
+
+  &__field-name {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &__value {
+    flex: 1;
+    margin-left: 20px;
+    border: none;
+    color: v.$color-gray-500;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: end;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

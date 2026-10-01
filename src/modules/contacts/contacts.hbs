@@ -6,11 +6,11 @@
       </a>
     </div>
     <div class="header__search-wrapper">
-      {{> pr-input placeholder="Поиск"}}
+      {{> pr-input name="message" placeholder="Поиск"}}
     </div>
   </header>
   <div class="contacts__chats">
-    {{#each contacts}}
+    {{#each mockData.contacts}}
       {{> chat-item name=name lastMessageIsYour=lastMessageIsYour lastMessage=lastMessage time=time unreadMessagesNumber=unreadMessagesNumber}}
     {{/each}}
   </div>

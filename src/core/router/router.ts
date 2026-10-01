@@ -4,6 +4,7 @@ import type { Path } from "./types";
 
 import { mockData } from "@/mock-data";
 
+// Импровизированный роутер
 export const renderRoute = async (path?: Path) => {
   const routePath = (path ?? window.location.pathname) as Path;
 
@@ -16,6 +17,13 @@ export const renderRoute = async (path?: Path) => {
 
   const { default: template } = await route.loader();
 
-  const html = Handlebars.compile(template)(mockData);
+  const routeData = route.data ?? {};
+
+  const data = {
+    mockData,
+    routeData,
+  };
+
+  const html = Handlebars.compile(template)(data);
   document.querySelector("#app")!.innerHTML = html;
 };

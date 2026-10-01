@@ -9,6 +9,7 @@ export type Path =
 interface Page {
   type: "page";
   loader: () => Promise<{ default: string }>;
+  data?: unknown;
 }
 
 interface Redirect {

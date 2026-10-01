@@ -1,44 +1,10 @@
-{{#with user}}
-  <div class="profile">
-    <div class="profile__icon"></div>
-    <h1 class="profile__name">{{name}}</h1>
-    <div class="info profile__info">
-      <div class="info__row">
-        <p class="info__field">Почта</p>
-        <p class="info__value">{{email}}</p>
-      </div>
-      <hr class="info__separator" />
-      <div class="info__row">
-        <p class="info__field">Логин</p>
-        <p class="info__value">{{login}}</p>
-      </div>
-      <hr class="info__separator" />
-      <div class="info__row">
-        <p class="info__field">Имя</p>
-        <p class="info__value">{{name}}</p>
-      </div>
-      <hr class="info__separator" />
-      <div class="info__row">
-        <p class="info__field">Фамилия</p>
-        <p class="info__value">{{surname}}</p>
-      </div>
-      <hr class="info__separator" />
-      <div class="info__row">
-        <p class="info__field">Имя в чате</p>
-        <p class="info__value">{{chatName}}</p>
-      </div>
-      <hr class="info__separator" />
-      <div class="info__row">
-        <p class="info__field">Телефон</p>
-        <p class="info__value">{{phone}}</p>
-      </div>
-      <div class="actions info__actions">
-        <p class="actions__option">Изменить данные</p>
-        <hr class="info__separator" />
-        <p class="actions__option">Изменить пароль</p>
-        <hr class="info__separator" />
-        <p class="actions__option actions__option--danger">Выйти</p>
-      </div>
-    </div>
+<div class="profile-page">
+  <div class="nav profile-page__nav">
+    <a class="nav__back" href="/messenger">
+      <-
+    </a>
   </div>
-{{/with}}
+  <div class="profile-page__profile">
+    {{> profile}}
+  </div>
+</div>

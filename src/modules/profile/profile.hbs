@@ -1,0 +1,25 @@
+{{#with mockData.user}}
+  <div class="profile">
+    <div class="profile__icon">
+      <input name="avatar" class="profile__icon-input" type="file" value="{{avatar}}"/>
+    </div>
+
+    <h1 class="profile__name">{{first_name}}</h1>
+    <div class="info profile__info">
+    {{#each ../routeData.fields}}
+      {{> info-row name=name fieldName=fieldName value=(lookup ../this key)}}
+      {{#unless @last}}
+        <hr class="info__separato"r />
+      {{/unless}}
+    {{/each}}
+
+    <div class="actions info__actions">
+      {{> pr-button class="actions__option" variant="text" text="Изменить данные" }}
+      <hr class="info__separator" />
+      {{> pr-button class="actions__option" variant="text" text="Изменить пароль" }}
+      <hr class="info__separator" />
+      {{> pr-button class="actions__option actions__option--danger" variant="text" text="Выйти" }}
+    </div>
+    </div>
+  </div>
+{{/with}}
