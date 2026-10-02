@@ -7,7 +7,10 @@ dotenv.config();
 export default defineConfig({
   server: {
     open: true,
-    port: process.env.PORT || 658 + 2342,
+    port: process.env.PORT || 3000,
+  },
+  preview: {
+    port: 3000,
   },
   resolve: {
     alias: {
