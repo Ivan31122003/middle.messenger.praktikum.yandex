@@ -1,3 +1,21 @@
 {{#> auth-layout}}
-  {{> registration-form}}
+  <form id="registration-form" class="registration-form">
+    <h1 class="registration-form__title">Регистрация</h1>
+
+    <div class="registration-form__fields">
+      {{#each routeData.fields}}
+        <div class="registration-form__middle-field">
+          {{> pr-input id=(concat 'registration-form__' name) name=name variant="field" type=type placeholder=caption }}
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="registration-form__registration-button">
+      {{> pr-button type="submit" text="Зарегистрироваться"}}
+    </div>
+
+      <a class="registration-form__login-link" href="/login">
+        Войти
+      </a>
+  </form>
 {{/auth-layout}}

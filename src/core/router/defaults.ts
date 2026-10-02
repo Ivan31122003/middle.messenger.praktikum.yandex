@@ -1,5 +1,6 @@
 import type { Route, Path } from "./types";
-import { profileData } from "@/pages/profile";
+import { registrationData } from "@/data/registration";
+import { profileData } from "@/data/profile";
 
 export const PAGE_404: Route = {
   type: "page",
@@ -22,14 +23,24 @@ export const ROUTES: Record<Path, Route> = {
   "/registration": {
     type: "page",
     loader: () => import("@/pages/registration"),
+    data: registrationData,
   },
   "/messenger": {
     type: "page",
     loader: () => import("@/pages/messenger"),
   },
-  "/profile": {
+  "/profile-info": {
     type: "page",
-    loader: () => import("@/pages/profile"),
+    loader: () => import("@/pages/profile-info"),
     data: profileData,
+  },
+  "/profile-change-data": {
+    type: "page",
+    loader: () => import("@/pages/profile-change-data"),
+    data: profileData,
+  },
+  "/profile-change-password": {
+    type: "page",
+    loader: () => import("@/pages/profile-change-password"),
   },
 };

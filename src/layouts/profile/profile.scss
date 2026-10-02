@@ -1,16 +1,22 @@
 @use "@/styles/variables.scss" as v;
 
-.profile-page {
+.profile-layout {
   height: 100%;
   display: flex;
 
   &__nav {
-    flex: 0 05%;
+    flex: 0 0 5%;
   }
 
-  &__profile {
+  &__profile-content-wrapper {
     flex: 1;
   }
+}
+
+.profile-content-wrapper {
+  margin: 60px auto 0;
+  box-sizing: border-box;
+  max-width: 510px;
 }
 
 .nav {
@@ -20,16 +26,8 @@
   border-right: 1px solid v.$color-gray-200;
   background-color: v.$color-gray-50;
 
-  &__back {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &__back-icon {
     width: 28px;
     height: 28px;
-    border-radius: 50%;
-    background-color: v.$color-accent;
-    color: v.$color-light;
-    text-decoration: none;
-    cursor: pointer;
   }
 }

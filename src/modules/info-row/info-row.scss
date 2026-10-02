@@ -1,11 +1,9 @@
 @use "@/styles/variables.scss" as v;
 
 .info-row {
-  display: flex;
-  justify-content: space-between;
-
   padding: 10px 0;
   display: flex;
+  justify-content: space-between;
 
   &__field-name {
     margin: 0;
@@ -14,6 +12,7 @@
   }
 
   &__value {
+    margin: 0;
     flex: 1;
     margin-left: 20px;
     border: none;
@@ -21,9 +20,5 @@
     font-size: 13px;
     font-weight: 500;
     text-align: end;
-
-    &:focus {
-      outline: none;
-    }
   }
 }

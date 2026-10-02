@@ -6,6 +6,7 @@ import "@/styles/index.scss";
 
 // Только для 1-го спринта
 const addEventListenersForNavigation = () => {
+  // Формы
   const loginForm = document.getElementById("login-form");
   loginForm?.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -16,6 +17,38 @@ const addEventListenersForNavigation = () => {
   regForm?.addEventListener("submit", (e) => {
     e.preventDefault();
     window.location.href = "/messenger";
+  });
+
+  const changeDataForm = document.getElementById("profile-change-data-form");
+  changeDataForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    window.location.href = "/profile-info";
+  });
+
+  const changePasswordForm = document.getElementById(
+    "profile-change-password-form",
+  );
+  changePasswordForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    window.location.href = "/profile-info";
+  });
+
+  // Кнопки
+  const changeDataButton = document.getElementById("profile-info__change-data");
+  changeDataButton?.addEventListener("click", () => {
+    window.location.href = "/profile-change-data";
+  });
+
+  const changePasswordButton = document.getElementById(
+    "profile-info__change-password",
+  );
+  changePasswordButton?.addEventListener("click", () => {
+    window.location.href = "/profile-change-password";
+  });
+
+  const exitButton = document.getElementById("profile-info__exit");
+  exitButton?.addEventListener("click", () => {
+    window.location.href = "/login";
   });
 };
 

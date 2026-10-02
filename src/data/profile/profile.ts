@@ -1,38 +1,33 @@
-import template from "./profile.hbs?raw";
-import "./profile.scss";
-
-export const ProfilePageTemplate = template;
-
 export const data = {
   fields: [
     {
       name: "email",
-      fieldName: "Почта",
+      caption: "Почта",
       key: "email",
     },
     {
       name: "login",
-      fieldName: "Логин",
+      caption: "Логин",
       key: "login",
     },
     {
       name: "first_name",
-      fieldName: "Имя",
+      caption: "Имя",
       key: "first_name",
     },
     {
       name: "second_name",
-      fieldName: "Фамилия",
+      caption: "Фамилия",
       key: "second_name",
     },
     {
       name: "display_name",
-      fieldName: "Имя в чате",
+      caption: "Имя в чате",
       key: "display_name",
     },
     {
       name: "phone",
-      fieldName: "Телефон",
+      caption: "Телефон",
       key: "phone",
     },
   ],

@@ -4,7 +4,9 @@ export type Path =
   | "/login"
   | "/registration"
   | "/messenger"
-  | "/profile";
+  | "/profile-info"
+  | "/profile-change-data"
+  | "/profile-change-password";
 
 interface Page {
   type: "page";
