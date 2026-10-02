@@ -63,6 +63,13 @@
   &__actions {
     margin-top: 60px;
   }
+
+  &__separator {
+    border: none;
+    height: 1px;
+    background-color: v.$color-gray-200;
+    margin: 0;
+  }
 }
 
 .actions {
@@ -82,11 +89,4 @@
       color: v.$color-danger;
     }
   }
-}
-
-hr {
-  border: none;
-  height: 1px;
-  background-color: v.$color-gray-200;
-  margin: 0;
 }

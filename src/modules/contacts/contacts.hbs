@@ -1,10 +1,10 @@
-<div class="contacts">
+<aside class="contacts">
   <header class="header contacts__header">
-    <div class="header__profile-wrapper">
+    <nav class="header__profile-wrapper">
       <a class="header__profile-link" href="/profile">
         Профиль
       </a>
-    </div>
+    </nav>
     <div class="header__search-wrapper">
       {{> pr-input name="message" placeholder="Поиск"}}
     </div>
@@ -14,5 +14,5 @@
       {{> chat-item name=name lastMessageIsYour=lastMessageIsYour lastMessage=lastMessage time=time unreadMessagesNumber=unreadMessagesNumber}}
     {{/each}}
   </div>
-</div>
+</aside>
 
