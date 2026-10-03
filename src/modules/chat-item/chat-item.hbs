@@ -1,0 +1,22 @@
+<li class="chat-item">
+  <div class="content">
+    <div class="content__icon"></div>
+    <div class="content__info">
+      <span class="content__name">{{name}}</span>
+      <div class="content__container-last-message">
+        {{#if lastMessageIsYour}}
+          <span class="content__you">Вы:</span>
+        {{/if}}
+        <span class="content__last-message">{{lastMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="meta chat-item__meta">
+    <p class="meta__last-message-time">{{time}}</p>
+    {{#if unreadMessagesNumber}}
+      <div class="meta__unread-messages-number">
+        {{unreadMessagesNumber}}
+      </div>
+    {{/if}}
+  </div>
+</li>

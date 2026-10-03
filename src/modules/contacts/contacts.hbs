@@ -1,0 +1,18 @@
+<aside class="contacts">
+  <header class="header contacts__header">
+    <nav class="header__profile-wrapper">
+      <a class="header__profile-link" href="/profile-info">
+        Профиль
+      </a>
+    </nav>
+    <div class="header__search-wrapper">
+      {{> pr-input id="contacts__search" name="search" placeholder="Поиск"}}
+    </div>
+  </header>
+  <ul class="contacts__chats">
+    {{#each mockData.contacts}}
+      {{> chat-item name=name lastMessageIsYour=lastMessageIsYour lastMessage=lastMessage time=time unreadMessagesNumber=unreadMessagesNumber}}
+    {{/each}}
+  </ul>
+</aside>
+

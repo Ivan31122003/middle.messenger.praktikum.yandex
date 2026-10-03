@@ -1,0 +1,1 @@
+export { registerLayouts } from "./layouts";

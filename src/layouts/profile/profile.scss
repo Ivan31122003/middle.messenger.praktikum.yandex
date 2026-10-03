@@ -1,0 +1,33 @@
+@use "@/styles/variables.scss" as v;
+
+.profile-layout {
+  height: 100%;
+  display: flex;
+
+  &__nav {
+    flex: 0 0 5%;
+  }
+
+  &__profile-content-wrapper {
+    flex: 1;
+  }
+}
+
+.profile-content-wrapper {
+  margin: 60px auto 0;
+  box-sizing: border-box;
+  max-width: 510px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid v.$color-gray-200;
+  background-color: v.$color-gray-50;
+
+  &__back-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
