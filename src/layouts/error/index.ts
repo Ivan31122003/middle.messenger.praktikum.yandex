@@ -1,0 +1,1 @@
+export { ErrorLayoutTemplate } from "./error";

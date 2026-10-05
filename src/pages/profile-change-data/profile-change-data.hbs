@@ -1,0 +1,17 @@
+{{#> profile-layout}}
+  {{#with mockData.user}}
+    <form id="profile-change-data-form" class="profile-change-data-form">
+      {{> pr-avatar avatar=avatar}}
+      <div class="profile-change-data-form__fields">
+        {{#each ../routeData.fields}}
+          <div class="profile-change-data-form__field-wrapper">
+            {{> pr-input id=(concat 'profile-change-data-form__' name) name=name variant="field" placeholder=caption value=(lookup ../this key)}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="profile-change-data-form__button-wrapper">
+        {{> pr-button type="submit" text="Сохранить"}}
+      </div>
+    </form>
+  {{/with}}
+{{/profile-layout}}

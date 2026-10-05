@@ -1,0 +1,18 @@
+<div class="pr-input">
+  {{#if (eq variant "field")}}
+    <label for="{{id}}" class="pr-input__placeholder">
+      {{placeholder}} 
+    </label>
+  {{/if}}
+  <input
+    id="{{id}}"
+    class="pr-input__input pr-input__input{{#if (eq variant "field")}}--field{{else}}--base{{/if}}"
+    value="{{value}}"
+    name="{{name}}"
+    type="{{#if type}}{{type}}{{else}}text{{/if}}"
+    placeholder="{{#if (eq variant "field")}}{{else}}{{placeholder}}{{/if}}"
+  />
+  {{#if validationMessage}} 
+    <p class="pr-input__validation-error-text">{{validationMessage}}</p>
+  {{/if}} 
+</div>

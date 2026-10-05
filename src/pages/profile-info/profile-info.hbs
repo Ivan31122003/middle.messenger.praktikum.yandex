@@ -1,0 +1,26 @@
+{{#> profile-layout}}
+  {{#with mockData.user}}
+    <form class="profile-info">
+      <div class="profile-info__avatar">
+        {{> pr-avatar avatar=avatar}}
+      </div>
+      <h1 class="profile-info__name">{{first_name}}</h1>
+      <div class="info profile-info__info">
+        {{#each ../routeData.fields}}
+          {{> info-row id=(concat "profile-info__" name) name=name caption=caption value=(lookup ../this key)}}
+          {{#unless @last}}
+            <hr class="info__separator" />
+          {{/unless}}
+        {{/each}}
+
+        <div class="actions info__actions">
+          {{> pr-button id="profile-info__change-data" type="button" class="actions__option" variant="text" text="Изменить данные" }}
+          <hr class="info__separator" />
+          {{> pr-button id="profile-info__change-password" type="button" class="actions__option" variant="text" text="Изменить пароль" }}
+          <hr class="info__separator" />
+          {{> pr-button id="profile-info__exit" type="button" class="actions__option actions__option--danger" variant="text" text="Выйти" }}
+        </div>
+      </div>
+    </form>
+  {{/with}}
+{{/profile-layout}}

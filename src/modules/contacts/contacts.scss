@@ -1,0 +1,38 @@
+@use "@/styles/variables.scss" as v;
+
+.contacts {
+  height: 100vh;
+  border-right: 1px solid v.$color-gray-200;
+  background-color: v.$color-gray-50;
+  display: flex;
+  flex-direction: column;
+
+  &__chats {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+  }
+}
+
+.header {
+  padding: 21px 10px 14px;
+
+  &__profile-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__profile-link {
+    text-decoration: none;
+    color: v.$color-gray-500;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &__search-wrapper {
+    margin-top: 23px;
+  }
+}

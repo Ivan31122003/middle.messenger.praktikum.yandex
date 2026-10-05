@@ -1,0 +1,1 @@
+export { ProfileLayoutTemplate } from "./profile";
