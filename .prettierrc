@@ -1,0 +1,37 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "singleAttributePerLine": false,
+  "overrides": [
+    {
+      "files": "*.hbs",
+      "options": {
+        "parser": "glimmer",
+        "singleQuote": false,
+        "printWidth": 100
+      }
+    },
+    {
+      "files": ["*.json", "*.jsonc"],
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "preserve"
+      }
+    }
+  ]
+}
