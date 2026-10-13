@@ -1,1 +1,1 @@
-export { ChatItemModuleTemplate } from "./chat-item";
+export { ChatItemModuleTemplate } from './chat-item';

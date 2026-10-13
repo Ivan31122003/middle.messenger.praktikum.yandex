@@ -1,1 +1,1 @@
-export { MessengerPageTemplate as default } from "./messenger";
+export { MessengerPageTemplate as default } from './messenger';

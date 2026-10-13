@@ -1,1 +1,1 @@
-export { RegistrationPageTemplate as default } from "./registration";
+export { RegistrationPageTemplate as default } from './registration';

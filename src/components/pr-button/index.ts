@@ -1,1 +1,1 @@
-export { PrButtonTemplate } from "./pr-button";
+export { PrButtonTemplate } from './pr-button';

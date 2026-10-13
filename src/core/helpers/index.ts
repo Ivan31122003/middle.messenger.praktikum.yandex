@@ -1,1 +1,1 @@
-export { registerHelpers } from "./helpers";
+export { registerHelpers } from './helpers';

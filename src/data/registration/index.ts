@@ -1,1 +1,1 @@
-export { data as registrationData } from "./registration";
+export { data as registrationData } from './registration';

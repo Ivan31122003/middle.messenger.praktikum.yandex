@@ -1,8 +1,8 @@
-import Handlebars from "handlebars";
-import { ROUTES, PAGE_404 } from "./defaults";
-import type { Path } from "./types";
+import Handlebars from 'handlebars';
+import { ROUTES, PAGE_404 } from './defaults';
+import type { Path } from './types';
 
-import { mockData } from "@/mock-data";
+import { mockData } from '@/mock-data';
 
 // Импровизированный роутер
 export const renderRoute = async (path?: Path) => {
@@ -10,7 +10,7 @@ export const renderRoute = async (path?: Path) => {
 
   const route = ROUTES[routePath] ?? PAGE_404;
 
-  if (route.type === "redirect") {
+  if (route.type === 'redirect') {
     window.location.replace(route.to);
     return;
   }
@@ -25,5 +25,5 @@ export const renderRoute = async (path?: Path) => {
   };
 
   const html = Handlebars.compile(template)(data);
-  document.querySelector("#app")!.innerHTML = html;
+  document.querySelector('#app')!.innerHTML = html;
 };

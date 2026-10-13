@@ -1,1 +1,1 @@
-export { ContactsModuleTemplate } from "./contacts";
+export { ContactsModuleTemplate } from './contacts';

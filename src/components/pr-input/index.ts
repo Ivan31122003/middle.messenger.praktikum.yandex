@@ -1,1 +1,1 @@
-export { PrInputTemplate } from "./pr-input";
+export { PrInputTemplate } from './pr-input';

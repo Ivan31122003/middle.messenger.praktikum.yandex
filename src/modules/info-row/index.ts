@@ -1,1 +1,1 @@
-export { InfoRowModule } from "./info-row";
+export { InfoRowModule } from './info-row';

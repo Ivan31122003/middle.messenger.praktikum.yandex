@@ -1,1 +1,1 @@
-export { data as profileData } from "./profile";
+export { data as profileData } from './profile';

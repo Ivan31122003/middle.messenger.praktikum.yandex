@@ -1,1 +1,1 @@
-export { LoginPageTemplate as default } from "./login";
+export { LoginPageTemplate as default } from './login';

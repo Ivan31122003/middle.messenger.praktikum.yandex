@@ -1,1 +1,1 @@
-export { PrAvatarTemplate } from "./pr-avatar";
+export { PrAvatarTemplate } from './pr-avatar';

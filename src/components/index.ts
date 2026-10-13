@@ -1,1 +1,1 @@
-export { registerComponents } from "./components";
+export { registerComponents } from './components';
