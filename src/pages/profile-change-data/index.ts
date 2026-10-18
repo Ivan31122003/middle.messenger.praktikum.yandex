@@ -1,1 +1,1 @@
-export { ProfileChangeDataPageTemplate as default } from './profile-change-data';
+export { ProfileChangeDataPage } from './profile-change-data';

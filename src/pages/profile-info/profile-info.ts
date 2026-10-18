@@ -1,4 +1,11 @@
-import template from './profile-info.hbs?raw';
-import './profile-info.scss';
+import ProfileInfoPageTemplate from './profile-info.hbs?raw';
+import { Block } from '@/core/block';
 
-export const ProfileInfoPageTemplate = template;
+export class ProfileInfoPage extends Block {
+  static componentName = 'ProfileInfoPage';
+  protected template = ProfileInfoPageTemplate;
+
+  constructor() {
+    super();
+  }
+}

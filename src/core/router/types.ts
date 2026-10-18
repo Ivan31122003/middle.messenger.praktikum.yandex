@@ -2,7 +2,7 @@ export type Path =
   | '/'
   | '/5xx'
   | '/login'
-  | '/registration'
+  | '/reg'
   | '/messenger'
   | '/profile-info'
   | '/profile-change-data'
@@ -10,8 +10,9 @@ export type Path =
 
 interface Page {
   type: 'page';
-  loader: () => Promise<{ default: string }>;
-  data?: unknown;
+  component: new () => {
+    element(): Element | null;
+  };
 }
 
 interface Redirect {
@@ -20,3 +21,7 @@ interface Redirect {
 }
 
 export type Route = Page | Redirect;
+
+export interface ChildComponent {
+  embed(node: ParentNode): void;
+}

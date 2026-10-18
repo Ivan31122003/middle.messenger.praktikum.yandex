@@ -1,10 +1,18 @@
 import type { Route, Path } from './types';
-import { registrationData } from '@/data/registration';
-import { profileData } from '@/data/profile';
+import {
+  Error404Page,
+  Error5xxPage,
+  LoginPage,
+  RegPage,
+  MessengerPage,
+  ProfileInfoPage,
+  ProfileChangeDataPage,
+  ProfileChangePasswordPage,
+} from '@/pages';
 
 export const PAGE_404: Route = {
   type: 'page',
-  loader: () => import('@/pages/error-404'),
+  component: Error404Page,
 };
 
 export const ROUTES: Record<Path, Route> = {
@@ -14,33 +22,30 @@ export const ROUTES: Record<Path, Route> = {
   },
   '/5xx': {
     type: 'page',
-    loader: () => import('@/pages/error-5xx'),
+    component: Error5xxPage,
   },
   '/login': {
     type: 'page',
-    loader: () => import('@/pages/login'),
+    component: LoginPage,
   },
-  '/registration': {
+  '/reg': {
     type: 'page',
-    loader: () => import('@/pages/registration'),
-    data: registrationData,
+    component: RegPage,
   },
   '/messenger': {
     type: 'page',
-    loader: () => import('@/pages/messenger'),
+    component: MessengerPage,
   },
   '/profile-info': {
     type: 'page',
-    loader: () => import('@/pages/profile-info'),
-    data: profileData,
+    component: ProfileInfoPage,
   },
   '/profile-change-data': {
     type: 'page',
-    loader: () => import('@/pages/profile-change-data'),
-    data: profileData,
+    component: ProfileChangeDataPage,
   },
   '/profile-change-password': {
     type: 'page',
-    loader: () => import('@/pages/profile-change-password'),
+    component: ProfileChangePasswordPage,
   },
 };

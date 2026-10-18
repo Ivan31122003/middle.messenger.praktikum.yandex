@@ -1,0 +1,23 @@
+<form id="reg-form" class="reg-form" novalidate>
+  <h1 class="reg-form__title">Регистрация</h1>
+  <div class="reg-form__fields">
+    {{#each fields}}
+      <div class="reg-form__middle-field">
+        {{{PrInput
+          ref=name
+          id=(concat "reg-form__" name)
+          name=name
+          variant="field"
+          type=type
+          placeholder=caption
+        }}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="reg-form__reg-button">
+    {{{PrButton type="submit" text="Зарегистрироваться"}}}
+  </div>
+  <a class="reg-form__login-link" href="/login">
+    Войти
+  </a>
+</form>

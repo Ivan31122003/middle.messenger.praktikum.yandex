@@ -1,4 +1,11 @@
-import template from './login.hbs?raw';
-import './login.scss';
+import LoginPageTemplate from './login.hbs?raw';
+import { Block } from '@/core/block';
 
-export const LoginPageTemplate = template;
+export class LoginPage extends Block {
+  static componentName = 'LoginPage';
+  protected template = LoginPageTemplate;
+
+  constructor() {
+    super();
+  }
+}

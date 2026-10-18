@@ -1,13 +1,9 @@
-import Handlebars from 'handlebars';
 import { ROUTES, PAGE_404 } from './defaults';
 import type { Path } from './types';
-
-import { mockData } from '@/mock-data';
 
 // Импровизированный роутер
 export const renderRoute = async (path?: Path) => {
   const routePath = (path ?? window.location.pathname) as Path;
-
   const route = ROUTES[routePath] ?? PAGE_404;
 
   if (route.type === 'redirect') {
@@ -15,15 +11,20 @@ export const renderRoute = async (path?: Path) => {
     return;
   }
 
-  const { default: template } = await route.loader();
+  const app = document.querySelector<HTMLElement>('#app');
 
-  const routeData = route.data ?? {};
+  if (!app) {
+    throw new Error('Не найден контейнер #app');
+  }
 
-  const data = {
-    mockData,
-    routeData,
-  };
+  const page = new route.component();
+  const pageElement = page.element();
 
-  const html = Handlebars.compile(template)(data);
-  document.querySelector('#app')!.innerHTML = html;
+  if (!pageElement) {
+    throw new Error(`Страница ${route.component.name} не создала DOM-элемент`);
+  }
+
+  app.replaceChildren(pageElement);
+
+  return;
 };

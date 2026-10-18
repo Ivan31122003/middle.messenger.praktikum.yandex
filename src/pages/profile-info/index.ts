@@ -1,1 +1,1 @@
-export { ProfileInfoPageTemplate as default } from './profile-info';
+export { ProfileInfoPage } from './profile-info';

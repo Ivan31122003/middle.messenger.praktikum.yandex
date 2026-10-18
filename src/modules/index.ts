@@ -1,1 +1,0 @@
-export { registerModules } from './modules';

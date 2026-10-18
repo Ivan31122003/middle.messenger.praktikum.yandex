@@ -20,6 +20,19 @@
     font-weight: 500;
   }
 
+  &--text {
+    width: fit-content;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: v.$color-accent;
+  }
+
+  &--danger {
+    color: v.$color-danger;
+  }
+
   &:hover {
     opacity: 0.9;
   }

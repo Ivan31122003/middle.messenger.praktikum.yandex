@@ -1,0 +1,24 @@
+{{#with user}}
+  <div class="profile-info-block">
+    <div class="profile-info-block__avatar">
+      {{{ PrAvatar avatar=avatar }}}
+    </div>
+    <h1 class="profile-info-block__name">{{first_name}}</h1>
+    <div class="info profile-info-block__info">
+      {{#each ../fields}}
+        {{{ InfoRow caption=caption value=(lookup ../this key) }}}
+        {{#unless @last}}
+          <hr class="info__separator" />
+        {{/unless}}
+      {{/each}}
+
+      <div class="actions info__actions">
+        {{{ PrButton id="to-change-data" type="button" variant="text" text="Изменить данные" }}}
+        <hr class="info__separator" />
+        {{{ PrButton id="to-change-password" type="button" variant="text" text="Изменить пароль" }}}
+        <hr class="info__separator" />
+        {{{ PrButton id="to-login-form" type="button" variant="text" danger=true text="Выйти" }}}
+      </div>
+    </div>
+  </div>
+{{/with}}

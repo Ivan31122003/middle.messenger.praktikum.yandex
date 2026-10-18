@@ -1,0 +1,26 @@
+<div class="communication">
+  {{#each conversation}}
+    <div class="communication__day">
+      <div class="communication__date-wrapper">
+        <span class="communication__date-text">{{date}}</span>
+      </div>
+      {{#each messages}}
+        <div class="communication__message-row communication__message-row--{{#if isMine}}mine{{else}}not-mine{{/if}}">
+          <div class="communication__message-wrapper communication__message-wrapper--{{#if isMine}}mine{{else}}not-mine{{/if}}">
+            <p class="communication__message-text">{{message}}</p>
+            <div class="communication__message-meta-info">
+              {{#if isMine}}
+                <img
+                  src="/assets/icons/{{#if isRead}}two-check-mark.svg{{else}}check-mark.svg{{/if}}"
+                  alt=""
+                  aria-hidden="true"
+                >
+              {{/if}}
+              <span class="communication__message-time">{{time}}</span>
+             </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>
