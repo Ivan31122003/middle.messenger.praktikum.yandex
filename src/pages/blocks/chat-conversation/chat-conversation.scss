@@ -1,0 +1,63 @@
+@use '@/styles/variables.scss' as v;
+
+.communication {
+  display: flex;
+  flex-direction: column;
+
+  &__date-wrapper {
+    text-align: center;
+  }
+
+  &__date-text {
+    color: v.$color-gray-500;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &__message-row {
+    display: flex;
+
+    &--mine {
+      justify-content: end;
+    }
+
+    &--not-mine {
+      justify-content: start;
+    }
+  }
+
+  &__message-wrapper {
+    box-sizing: border-box;
+    padding: 11px;
+    max-width: 400px;
+    display: flex;
+    align-items: end;
+
+    &--mine {
+      border-radius: 10px 10px 0;
+      background-color: v.$color-light-accent;
+    }
+
+    &--not-mine {
+      border-radius: 10px;
+      background-color: v.$color-gray-50;
+    }
+  }
+
+  &__message-meta-info {
+    margin-left: 10px;
+    display: flex;
+    gap: 5px;
+  }
+
+  &__message-text {
+    margin: 0;
+    line-height: 20px;
+  }
+
+  &__message-time {
+    color: v.$color-gray-500;
+    font-size: 9px;
+    font-weight: 500;
+  }
+}

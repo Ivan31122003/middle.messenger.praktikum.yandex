@@ -1,46 +1,51 @@
-import type { Route, Path } from "./types";
-import { registrationData } from "@/data/registration";
-import { profileData } from "@/data/profile";
+import type { Route, Path } from './types';
+import {
+  Error404Page,
+  Error5xxPage,
+  LoginPage,
+  RegPage,
+  MessengerPage,
+  ProfileInfoPage,
+  ProfileChangeDataPage,
+  ProfileChangePasswordPage,
+} from '@/pages';
 
 export const PAGE_404: Route = {
-  type: "page",
-  loader: () => import("@/pages/error-404"),
+  type: 'page',
+  component: Error404Page,
 };
 
 export const ROUTES: Record<Path, Route> = {
-  "/": {
-    type: "redirect",
-    to: "/login",
+  '/': {
+    type: 'redirect',
+    to: '/login',
   },
-  "/5xx": {
-    type: "page",
-    loader: () => import("@/pages/error-5xx"),
+  '/5xx': {
+    type: 'page',
+    component: Error5xxPage,
   },
-  "/login": {
-    type: "page",
-    loader: () => import("@/pages/login"),
+  '/login': {
+    type: 'page',
+    component: LoginPage,
   },
-  "/registration": {
-    type: "page",
-    loader: () => import("@/pages/registration"),
-    data: registrationData,
+  '/reg': {
+    type: 'page',
+    component: RegPage,
   },
-  "/messenger": {
-    type: "page",
-    loader: () => import("@/pages/messenger"),
+  '/messenger': {
+    type: 'page',
+    component: MessengerPage,
   },
-  "/profile-info": {
-    type: "page",
-    loader: () => import("@/pages/profile-info"),
-    data: profileData,
+  '/profile-info': {
+    type: 'page',
+    component: ProfileInfoPage,
   },
-  "/profile-change-data": {
-    type: "page",
-    loader: () => import("@/pages/profile-change-data"),
-    data: profileData,
+  '/profile-change-data': {
+    type: 'page',
+    component: ProfileChangeDataPage,
   },
-  "/profile-change-password": {
-    type: "page",
-    loader: () => import("@/pages/profile-change-password"),
+  '/profile-change-password': {
+    type: 'page',
+    component: ProfileChangePasswordPage,
   },
 };

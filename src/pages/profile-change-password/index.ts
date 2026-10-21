@@ -1,1 +1,1 @@
-export { ProfileChangePasswordPageTemplate as default } from "./profile-change-password";
+export { ProfileChangePasswordPage } from './profile-change-password';

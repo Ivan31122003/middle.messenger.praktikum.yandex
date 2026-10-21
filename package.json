@@ -5,14 +5,30 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "start": "tsc && vite build && vite preview"
+    "start": "tsc --noEmit && vite build && vite preview",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint:types": "tsc --noEmit",
+    "lint:eslint": "eslint .",
+    "lint:styles": "stylelint \"src/**/*.scss\"",
+    "lint": "npm run lint:types && npm run lint:eslint && npm run lint:styles"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.2",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "jiti": "^2.7.0",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
     "sass": "^1.105.0",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.71.2",
     "vite": "^8.3.0"
   },
   "dependencies": {
@@ -21,5 +37,18 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,mjs,cjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,hbs}": [
+      "prettier --write"
+    ]
   }
 }

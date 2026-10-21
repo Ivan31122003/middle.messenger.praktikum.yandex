@@ -1,1 +1,1 @@
-export { registerLayouts } from "./layouts";
+export { registerLayouts } from './layouts';

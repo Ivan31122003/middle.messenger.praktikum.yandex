@@ -1,0 +1,28 @@
+<form id="login-form" class="login-form">
+  <h1 class="login-form__title">Вход</h1>
+  <div class="login-form__login">
+    {{{PrInput
+      ref="login"
+      id="login-form__login"
+      name="login"
+      variant="field"
+      placeholder="Логин"
+    }}}
+  </div>
+  <div class="login-form__password">
+    {{{PrInput
+      ref="password"
+      id="login-form__password"
+      name="password"
+      variant="field"
+      placeholder="Пароль"
+      type="password"
+    }}}
+  </div>
+  <div class="login-form__auth">
+    {{{PrButton type="submit" text="Авторизоваться"}}}
+  </div>
+  <a class="login-form__reg-link" href="/reg">
+    Нет аккаунта?
+  </a>
+</form>

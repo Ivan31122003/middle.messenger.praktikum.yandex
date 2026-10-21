@@ -1,3 +1,11 @@
-<button id="{{id}}" class="pr-button {{#if (eq variant 'text')}}{{class}}{{else}}pr-button--primary{{/if}}" type="{{type}}">
-  {{text}}
+<button
+  id="{{id}}"
+  class="pr-button pr-button--{{#if (eq variant 'text')}}text{{else if (eq variant 'icon')}}icon{{else}}primary{{/if}} {{#if danger}}pr-button--danger{{/if}}"
+  type="{{type}}"
+  >
+  {{#if iconSrc}}
+    <img src="{{iconSrc}}">
+  {{else}}
+    {{text}}
+  {{/if}}
 </button>
