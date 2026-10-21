@@ -5,6 +5,7 @@ import type { Props } from './types';
 import { Block } from '@/core';
 import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
+import { validateForm, isValidatorName } from '@/modules/validation';
 
 import { mockUser } from '@/store/user';
 
@@ -25,7 +26,7 @@ export class ProfileChangeDataForm extends Block<Props> {
         return;
       }
 
-      if (target.name === 'display_message') {
+      if (!isValidatorName(target.name)) {
         return;
       }
 
@@ -49,40 +50,29 @@ export class ProfileChangeDataForm extends Block<Props> {
 
       const formData = new FormData(form);
 
-      const login = String(formData.get('login') ?? '');
-      const email = String(formData.get('email') ?? '');
-      const phone = String(formData.get('phone') ?? '');
-      const firstName = String(formData.get('first_name') ?? '');
-      const secondName = String(formData.get('second_name') ?? '');
-      const displayName = String(formData.get('display_name') ?? '');
-
-      const errors: Record<string, string | undefined> = {
-        login: validators['login'](login),
-        email: validators['email'](email),
-        phone: validators['phone'](phone),
-        first_name: validators['first_name'](firstName),
-        second_name: validators['second_name'](secondName),
-      };
+      const { values, errors, isValid } = validateForm(formData, {
+        login: validators.login,
+        email: validators.email,
+        phone: validators.phone,
+        first_name: validators.first_name,
+        second_name: validators.second_name,
+        display_name: validators.display_name,
+      });
 
       for (const [name, errorMessage] of Object.entries(errors)) {
         const input = this.refs[name] as PrInput;
 
         input.setProps({
-          value: String(formData.get(name) ?? ''),
+          value: values[name],
           errorMessage,
         });
       }
 
-      if (Object.values(errors).some((errorMessage) => errorMessage)) {
+      if (!isValid) {
         return;
       }
 
-      console.log(login);
-      console.log(email);
-      console.log(phone);
-      console.log(displayName);
-      console.log(firstName);
-      console.log(secondName);
+      console.log(values);
     },
   };
 }

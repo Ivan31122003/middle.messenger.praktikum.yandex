@@ -87,7 +87,7 @@ export abstract class Block<Props extends BlockOwnProps = object> {
   private unmountComponent() {
     if (this.domElement) {
       /** Вызываем очистку в порядке, обратном созданию */
-      this.children.reverse().forEach((child) => child.unmountComponent());
+      this.children.toReversed().forEach((child) => child.unmountComponent());
       this.componentWillUnmount();
       this.removeListeners();
     }

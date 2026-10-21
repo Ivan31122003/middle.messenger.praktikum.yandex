@@ -3,7 +3,8 @@ import './profile-change-password-form.scss';
 import type { Props } from './types';
 import { Block } from '@/core/block';
 import { PrInput } from '@/components';
-import { validateNotEmpty, validators } from '@/modules/validation/validator';
+import { validators } from '@/modules/validation/validator';
+import { validateForm, isValidatorName } from '@/modules/validation';
 
 import { mockUser } from '@/store/user';
 
@@ -12,6 +13,26 @@ export class ProfileChangePasswordForm extends Block<Props> {
   protected template = ProfileChangePasswordFormTemplate;
 
   protected events = {
+    focusout: (event: Event) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLInputElement)) {
+        return;
+      }
+
+      if (!isValidatorName(target.name)) {
+        return;
+      }
+
+      const input = this.refs[target.name] as PrInput;
+      const errorMessage = validators[target.name](target.value);
+      const value = String(target.value ?? '');
+
+      input.setProps({
+        value,
+        errorMessage,
+      });
+    },
     submit: (e: Event) => {
       e.preventDefault();
 
@@ -23,32 +44,26 @@ export class ProfileChangePasswordForm extends Block<Props> {
 
       const formData = new FormData(form);
 
-      const oldPassword = String(formData.get('old_password') ?? '');
-      const newPassword = String(formData.get('new_password') ?? '');
-      const repeatPassword = String(formData.get('repeat_password') ?? '');
-
-      const errors: Record<string, string | undefined> = {
-        old_password: validateNotEmpty(oldPassword),
-        new_password: validators['password'](newPassword),
-        repeat_password: validateNotEmpty(repeatPassword),
-      };
+      const { values, errors, isValid } = validateForm(formData, {
+        old_password: validators.password,
+        password: validators.password,
+        repeat_password: validators.password,
+      });
 
       for (const [name, errorMessage] of Object.entries(errors)) {
         const input = this.refs[name] as PrInput;
 
         input.setProps({
-          value: String(formData.get(name) ?? ''),
+          value: values[name],
           errorMessage,
         });
       }
 
-      if (Object.values(errors).some((errorMessage) => errorMessage)) {
+      if (!isValid) {
         return;
       }
 
-      console.log(oldPassword);
-      console.log(newPassword);
-      console.log(repeatPassword);
+      console.log(values);
     },
   };
 
