@@ -4,6 +4,7 @@ import { Block } from '@/core';
 import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
 import { validateForm, isValidatorName } from '@/modules/validation';
+import { router } from '@/core/navigation';
 
 export class LoginForm extends Block {
   static componentName = 'LoginForm';
@@ -61,7 +62,7 @@ export class LoginForm extends Block {
 
       console.log(values);
 
-      window.location.href = '/messenger';
+      router.go('/messenger');
     },
   };
 

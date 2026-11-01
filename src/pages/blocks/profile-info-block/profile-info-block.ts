@@ -3,6 +3,7 @@ import './profile-info-block.scss';
 import { INFO_FIELDS } from './defaults';
 import type { Props } from './types';
 import { Block } from '@/core/block';
+import { router } from '@/core/navigation';
 
 import { mockUser } from '@/store/user';
 
@@ -26,13 +27,13 @@ export class ProfileInfoBlock extends Block<Props> {
 
       switch (id) {
         case 'to-change-data':
-          window.location.href = '/profile-change-data';
+          router.go('/settings-change-data');
           break;
         case 'to-change-password':
-          window.location.href = '/profile-change-password';
+          router.go('/settings-change-password');
           break;
         case 'to-login-form':
-          window.location.href = '/login';
+          router.go('/');
           break;
       }
     },
