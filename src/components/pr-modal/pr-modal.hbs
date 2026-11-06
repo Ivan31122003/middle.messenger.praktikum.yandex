@@ -1,0 +1,14 @@
+<div class="modal-wrapper" {{#unless visible}}hidden{{/unless}}>
+  <div class="modal" role="dialog" aria-modal="true">
+    <header class="modal__header">
+      <span class="modal__title">{{title}}</span>
+        {{{PrButton
+          id="modal__cross"
+          type="button"
+          variant="icon"
+          iconSrc="/assets/icons/cross.svg"
+        }}}
+    </header>
+    {{> @partial-block}}
+  </div>
+</div>

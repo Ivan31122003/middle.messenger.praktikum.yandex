@@ -33,10 +33,9 @@ export class Route<T> {
   render() {
     if (!this.block) {
       this.block = new this.blockClass();
-      render(this.props.rootQuery, this.block);
-      return;
     }
 
+    render(this.props.rootQuery, this.block);
     this.block.show();
   }
 }

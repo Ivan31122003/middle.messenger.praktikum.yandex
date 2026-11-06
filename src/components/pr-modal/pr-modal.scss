@@ -1,0 +1,44 @@
+@use '@/styles/variables' as v;
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  background-color: #000000aa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-wrapper[hidden] {
+  display: none;
+}
+
+.modal {
+  padding: 20px 30px 40px;
+  border-radius: 12px;
+  background: white;
+
+  &__header {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+#modal__cross {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

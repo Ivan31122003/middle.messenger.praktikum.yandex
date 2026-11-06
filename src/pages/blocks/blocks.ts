@@ -3,6 +3,7 @@ import { LoginForm } from './login-form';
 import { RegForm } from './reg-form';
 import { ContactItem } from './contact-item';
 import { InfoRow } from './info-row';
+import { CreateChatModal } from './create-chat-modal';
 import { Contacts } from './contacts';
 import { ProfileInfoBlock } from './profile-info-block';
 import { ProfileChangeDataForm } from './profile-change-data-form';
@@ -17,6 +18,7 @@ export const registerBlocks = () => {
   registerComponent(RegForm);
   registerComponent(ContactItem);
   registerComponent(InfoRow);
+  registerComponent(CreateChatModal);
   registerComponent(Contacts);
   registerComponent(ProfileInfoBlock);
   registerComponent(ProfileChangeDataForm);

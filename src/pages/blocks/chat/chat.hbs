@@ -1,11 +1,35 @@
 <section class="chat">
-  {{#with contact}}
+  {{#with activeChat}}
     <header class="chat-header chat__header">
       <div class="chat-header__contact">
         <div class="chat-header__avatar"></div>
-        <span>{{displayName}}</span>
+        <span>{{title}}</span>
       </div>
-      {{{PrButton variant="icon" type="button" iconSrc="/assets/icons/three-dots.svg"}}}
+      
+      <div class="chat-menu">
+        {{{PrButton
+          id="chat-menu-toggle"
+          variant="icon"
+          type="button"
+          iconSrc="/assets/icons/three-dots.svg"
+        }}}
+
+        {{#if ../menuOpen}}
+          <div class="chat-menu__dropdown">
+            {{{PrButton
+              id="chat-add-user"
+              type="button"
+              text="Добавить пользователя"
+            }}}
+
+            {{{PrButton
+              id="chat-delete"
+              type="button"
+              text="Удалить пользователя"
+            }}}
+          </div>
+        {{/if}}
+      </div>
     </header>
   {{/with}}
 

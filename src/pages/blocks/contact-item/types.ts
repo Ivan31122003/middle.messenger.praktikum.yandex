@@ -1,6 +1,7 @@
 import type { BlockOwnProps } from '@/core/block';
 
 export interface Props extends BlockOwnProps {
+  id: number;
   name: string;
   lastMessageIsYour: boolean;
   lastMessage: string;
