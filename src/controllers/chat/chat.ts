@@ -102,6 +102,50 @@ class ChatController {
       chatId: activeChatId,
     });
   }
+
+  async updateAvatar(formData: FormData) {
+    const activeChat = this.getActiveChat();
+
+    if (!activeChat) {
+      throw new Error('Чат не выбран');
+    }
+
+    formData.set('chatId', String(activeChat.id));
+
+    const result = await chatAPI.updateAvatar(formData);
+
+    if (result.ok) {
+      return await this.fetchChats();
+    }
+
+    return result;
+  }
+
+  async deleteChat() {
+    const activeChat = this.getActiveChat();
+
+    if (!activeChat) {
+      throw new Error('Чат не выбран');
+    }
+
+    const result = await chatAPI.deleteChat({ chatId: activeChat.id });
+
+    if (result.ok) {
+      return await this.fetchChats();
+    }
+
+    return result;
+  }
+
+  async getChatUsers() {
+    const activeChat = this.getActiveChat();
+
+    if (!activeChat) {
+      throw new Error('Чат не выбран');
+    }
+
+    return await chatAPI.getChatUsers({ chatId: activeChat.id });
+  }
 }
 
 export const chatController = new ChatController();

@@ -1,4 +1,10 @@
 <form class="delete-user-modal">
+  <span>Пользователи в чате</span>
+  <ul class="delete-user-modal__users-list">
+    {{#each users}}
+      <li>{{login}}</li>
+    {{/each}}
+  </ul>
   {{{PrInput
     ref="user-login"
     id="delete-user-modal__user-login"

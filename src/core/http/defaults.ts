@@ -5,4 +5,4 @@ export const METHODS = {
   DELETE: 'DELETE',
 } as const;
 
-export const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST;
+export const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST || 'https://ya-praktikum.tech';

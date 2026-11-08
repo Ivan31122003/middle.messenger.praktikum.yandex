@@ -8,6 +8,7 @@ import { message } from '@/components/pr-message';
 export class DeleteUserModal extends Block {
   static componentName = 'DeleteUserModal';
   protected template = DeleteUserModalTemplate;
+  private loadStarted = false;
 
   protected events = {
     submit: async (e: Event) => {
@@ -47,4 +48,30 @@ export class DeleteUserModal extends Block {
       await chatController.fetchChats();
     },
   };
+
+  protected componentDidMount(): void {
+    if (this.loadStarted) {
+      return;
+    }
+
+    this.loadStarted = true;
+    void this.loadUsers();
+  }
+
+  private async loadUsers(): Promise<void> {
+    try {
+      const result = await chatController.getChatUsers();
+
+      if (!result.ok) {
+        message.error(result.reason);
+        return;
+      }
+
+      this.setProps({ users: result.data });
+    } catch (error) {
+      message.error(
+        error instanceof Error ? error.message : 'Не удалось загрузить участников чата',
+      );
+    }
+  }
 }
