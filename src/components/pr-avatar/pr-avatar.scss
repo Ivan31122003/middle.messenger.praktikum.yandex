@@ -1,18 +1,37 @@
 @use '@/styles/variables.scss' as v;
 
 .pr-avatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 130px;
   height: 130px;
   background-color: v.$color-gray-200;
   border-radius: 50%;
+  overflow: hidden;
 
-  &__input {
-    opacity: 0;
+  &__overlay {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: #0007;
+    opacity: 0;
+    z-index: 2;
+    color: v.$color-light;
     cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
   }
 }

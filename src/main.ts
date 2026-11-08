@@ -13,11 +13,13 @@ import {
   Error404Page,
   Error5xxPage,
 } from '@/pages';
+import { modal } from '@/components/pr-modal';
 import '@/styles/index.scss';
 
 const main = async () => {
   registerHelpers();
   registerComponents();
+  document.body.append(modal.element());
   registerBlocks();
   registerLayouts();
   router

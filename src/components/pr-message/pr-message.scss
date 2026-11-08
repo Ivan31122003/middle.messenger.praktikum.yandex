@@ -1,0 +1,20 @@
+@use '@/styles/variables' as v;
+
+.message {
+  padding: 10px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 10px;
+  z-index: 10000;
+
+  &--success {
+    color: v.$color-gray-50;
+    background-color: green;
+  }
+
+  &--error {
+    color: v.$color-gray-50;
+    background-color: v.$color-danger;
+  }
+}

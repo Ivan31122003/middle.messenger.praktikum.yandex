@@ -5,6 +5,8 @@ import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
 import { validateForm, isValidatorName } from '@/modules/validation';
 import { router } from '@/core/navigation';
+import { authController } from '@/controllers/auth';
+import { message } from '@/components/pr-message';
 
 export class LoginForm extends Block {
   static componentName = 'LoginForm';
@@ -31,7 +33,7 @@ export class LoginForm extends Block {
         errorMessage,
       });
     },
-    submit: (e: Event) => {
+    submit: async (e: Event) => {
       e.preventDefault();
 
       const form = e.currentTarget;
@@ -60,9 +62,17 @@ export class LoginForm extends Block {
         return;
       }
 
-      console.log(values);
+      const responseSignIn = await authController.signIn({
+        login: values.login,
+        password: values.password,
+      });
 
-      router.go('/messenger');
+      if (!responseSignIn.ok) {
+        message.error(responseSignIn.reason);
+        return;
+      }
+
+      await router.go('/messenger');
     },
   };
 
