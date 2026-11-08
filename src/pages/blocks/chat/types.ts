@@ -1,6 +1,7 @@
+import type { Chat } from '@/types';
 import type { BlockOwnProps } from '@/core/block';
-import type { ConversationDay } from '@/store/contact';
 
 export interface Props extends BlockOwnProps {
-  conversation: ConversationDay[];
+  activeChat: Chat | null;
+  menuOpen: boolean;
 }

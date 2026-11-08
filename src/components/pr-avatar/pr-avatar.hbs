@@ -1,3 +1,13 @@
 <div class="pr-avatar">
-  <input name="avatar" class="pr-avatar__input" type="file" value="{{avatar}}" />
+  <div class="pr-avatar__overlay">
+    <span>Поменять аватар</span>
+  </div>
+  {{#if avatar}}
+    <img
+      src="https://ya-praktikum.tech/api/v2/resources{{avatar}}"
+      name="avatar"
+      class="pr-avatar__img"
+      alt="Аватар"
+    />
+  {{/if}}
 </div>

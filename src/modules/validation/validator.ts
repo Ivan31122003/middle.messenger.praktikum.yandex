@@ -1,6 +1,18 @@
 export type ValidationResult = string | undefined;
 export type FormValues = Record<string, string>;
 
+type ValidatorName =
+  | 'login'
+  | 'email'
+  | 'phone'
+  | 'first_name'
+  | 'second_name'
+  | 'display_name'
+  | 'password'
+  | 'message';
+
+export type Validator = (value: string) => ValidationResult;
+
 const LOGIN_PATTERN = /^(?=.{3,20}$)(?=.*[A-Za-z])[A-Za-z0-9_-]+$/;
 const EMAIL_PATTERN = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z]+\.[A-Za-z]+$/;
 const PASSWORD_PATTERN = /^(?=.{8,40}$)(?=.*[A-Z])(?=.*\d).+$/;
@@ -81,6 +93,14 @@ const validateFirstName = (value: string): ValidationResult =>
 const validateSecondName = (value: string): ValidationResult =>
   validateName(value, 'Введите фамилию', 'Фамилия');
 
+const validateDisplayName = (value: string): ValidationResult => {
+  if (!value.trim()) {
+    return 'Введите имя в чате';
+  }
+
+  return undefined;
+};
+
 const validateMessage = (value: string) => {
   if (!value.trim()) {
     return 'Введите сообщение';
@@ -89,12 +109,25 @@ const validateMessage = (value: string) => {
   return undefined;
 };
 
-export const validators: Record<string, (value: string) => ValidationResult> = {
+export const repeatPassword = (value1: string, value2: string) => {
+  if (value1 !== value2) {
+    return 'Пароль не совпадает';
+  }
+
+  return undefined;
+};
+
+export const validators: Record<ValidatorName, Validator> = {
   login: validateLogin,
   email: validateEmail,
   phone: validatePhone,
   first_name: validateFirstName,
   second_name: validateSecondName,
+  display_name: validateDisplayName,
   password: validatePassword,
   message: validateMessage,
+};
+
+export const isValidatorName = (name: string): name is ValidatorName => {
+  return name in validators;
 };

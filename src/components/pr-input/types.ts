@@ -6,6 +6,6 @@ export interface Props extends BlockOwnProps {
   variant: 'base' | 'field';
   value: string;
   placeholder?: string;
-  type?: 'text' | 'password' | 'email';
+  type?: 'text' | 'password' | 'email' | 'tel';
   errorMessage?: string;
 }

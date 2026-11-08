@@ -1,22 +1,26 @@
 <aside class="contacts">
   <header class="header contacts__header">
     <nav class="header__profile-wrapper">
-      <a class="header__profile-link" href="/profile-info">
+      <a class="header__profile-link" href="/settings">
         Профиль
       </a>
     </nav>
     <div class="header__search-wrapper">
       {{{PrInput id="contacts__search" name="search" placeholder="Поиск"}}}
     </div>
+    <div class="header__create-chat-wrapper">
+      {{{PrButton id="contacts__create-chat" text="Создать чат"}}}
+    </div>
   </header>
-  <ul class="contacts__chats">
+  <ul id="contacts__chats" class="contacts__chats">
     {{#each contacts}}
       {{{ContactItem
-        name=name
+        id=id
+        name=title
         lastMessageIsYour=lastMessageIsYour
-        lastMessage=lastMessage
-        time=time
-        unreadMessagesNumber=unreadMessagesNumber
+        lastMessage=last_message.content
+        time=last_message.time
+        unreadMessagesNumber=unread_count
       }}}
     {{/each}}
   </ul>

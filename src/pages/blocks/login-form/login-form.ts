@@ -2,17 +2,41 @@ import LoginFormTemplate from './login-form.hbs?raw';
 import './login-form.scss';
 import { Block } from '@/core';
 import { PrInput } from '@/components';
-import { validateNotEmpty } from '@/modules/validation/validator';
+import { validators } from '@/modules/validation/validator';
+import { validateForm, isValidatorName } from '@/modules/validation';
+import { router } from '@/core/navigation';
+import { authController } from '@/controllers/auth';
+import { message } from '@/components/pr-message';
 
 export class LoginForm extends Block {
   static componentName = 'LoginForm';
   protected template = LoginFormTemplate;
 
   protected events = {
-    submit: (event: Event) => {
-      event.preventDefault();
+    focusout: (e: Event) => {
+      const target = e.target;
 
-      const form = event.currentTarget;
+      if (!(target instanceof HTMLInputElement)) {
+        return;
+      }
+
+      if (!isValidatorName(target.name)) {
+        return;
+      }
+
+      const input = this.refs[target.name] as PrInput;
+      const errorMessage = validators[target.name](target.value);
+      const value = String(target.value ?? '');
+
+      input.setProps({
+        value,
+        errorMessage,
+      });
+    },
+    submit: async (e: Event) => {
+      e.preventDefault();
+
+      const form = e.currentTarget;
 
       if (!(form instanceof HTMLFormElement)) {
         return;
@@ -20,28 +44,35 @@ export class LoginForm extends Block {
 
       const formData = new FormData(form);
 
-      const login = String(formData.get('login') ?? '');
-      const password = String(formData.get('password') ?? '');
-
-      const errors = {
-        login: validateNotEmpty(login),
-        password: validateNotEmpty(password),
-      };
+      const { values, errors, isValid } = validateForm(formData, {
+        login: validators.login,
+        password: validators.password,
+      });
 
       for (const [name, errorMessage] of Object.entries(errors)) {
         const input = this.refs[name] as PrInput;
 
         input.setProps({
-          value: String(formData.get(name) ?? ''),
+          value: values[name],
           errorMessage,
         });
       }
 
-      if (Object.values(errors).some((errorMessage) => errorMessage)) {
+      if (!isValid) {
         return;
       }
 
-      window.location.href = '/messenger';
+      const responseSignIn = await authController.signIn({
+        login: values.login,
+        password: values.password,
+      });
+
+      if (!responseSignIn.ok) {
+        message.error(responseSignIn.reason);
+        return;
+      }
+
+      await router.go('/messenger');
     },
   };
 
