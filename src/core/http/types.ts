@@ -21,3 +21,5 @@ export type BodyOptions = BaseOptions & {
 export type RequestOptions =
   | (GetOptions & { method: typeof METHODS.GET })
   | (BodyOptions & { method: Exclude<Method, typeof METHODS.GET> });
+
+export type HTTPMethod<Options> = (url: string, options?: Options) => Promise<unknown>;

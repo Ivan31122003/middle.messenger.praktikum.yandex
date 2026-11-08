@@ -26,17 +26,25 @@ export class Chat extends Block<Props> {
         case 'chat-menu-toggle':
           this.setProps({ menuOpen: !this.props.menuOpen });
           break;
-
-        case 'chat-add-user':
+        case 'add-user-to-chat':
           this.setProps({ menuOpen: false });
           modal.setContent('{{{AddUserModal}}}');
           modal.setProps({ title: 'Добавить пользователя в чат', visible: true });
           break;
-
-        case 'chat-delete':
+        case 'delete-user-from-chat':
           this.setProps({ menuOpen: false });
           modal.setContent('{{{DeleteUserModal}}}');
           modal.setProps({ title: 'Удалить пользователя из чата', visible: true });
+          break;
+        case 'change-chat-icon':
+          this.setProps({ menuOpen: false });
+          modal.setContent('{{{UploadChatAvatarModal}}}');
+          modal.setProps({ title: 'Поменять иконку чата', visible: true });
+          break;
+        case 'delete-chat':
+          this.setProps({ menuOpen: false });
+          modal.setContent('{{{DeleteChatModal}}}');
+          modal.setProps({ title: 'Удалить чат?', visible: true });
           break;
       }
     },

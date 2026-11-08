@@ -2,7 +2,9 @@
   {{#with activeChat}}
     <header class="chat-header chat__header">
       <div class="chat-header__contact">
-        <div class="chat-header__avatar"></div>
+        <div class="chat-header__avatar">
+          {{{PrAvatar avatar=avatar}}}
+        </div>
         <span>{{title}}</span>
       </div>
       
@@ -17,15 +19,32 @@
         {{#if ../menuOpen}}
           <div class="chat-menu__dropdown">
             {{{PrButton
-              id="chat-add-user"
+              id="add-user-to-chat"
+              variant="text"
               type="button"
               text="Добавить пользователя"
             }}}
 
             {{{PrButton
-              id="chat-delete"
+              id="delete-user-from-chat"
+              variant="text"
               type="button"
               text="Удалить пользователя"
+            }}}
+
+            {{{PrButton
+              id="change-chat-icon"
+              variant="text"
+              type="button"
+              text="Поменять иконку чата"
+            }}}
+
+            {{{PrButton
+              id="delete-chat"
+              variant="text"
+              danger=true
+              type="button"
+              text="Удалить чат"
             }}}
           </div>
         {{/if}}

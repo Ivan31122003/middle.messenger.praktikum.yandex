@@ -1,7 +1,10 @@
 <div class="pr-avatar">
-  <div class="pr-avatar__overlay">
-    <span>Поменять аватар</span>
-  </div>
+  {{#if isChangeable}}
+    <div class="pr-avatar__overlay">
+      <span>Поменять аватар</span>
+    </div>
+  {{/if}}
+
   {{#if avatar}}
     <img
       src="https://ya-praktikum.tech/api/v2/resources{{avatar}}"

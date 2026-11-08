@@ -1,5 +1,7 @@
 import { registerComponent } from '@/core';
 import { UploadUserAvatarModal } from './upload-user-avatar-modal';
+import { UploadChatAvatarModal } from './upload-chat-avatar-modal';
+import { DeleteChatModal } from './delete-chat-modal';
 import { LoginForm } from './login-form';
 import { RegForm } from './reg-form';
 import { ContactItem } from './contact-item';
@@ -18,6 +20,8 @@ import { Chat } from './chat';
 
 export const registerBlocks = () => {
   registerComponent(UploadUserAvatarModal);
+  registerComponent(UploadChatAvatarModal);
+  registerComponent(DeleteChatModal);
   registerComponent(LoginForm);
   registerComponent(RegForm);
   registerComponent(ContactItem);

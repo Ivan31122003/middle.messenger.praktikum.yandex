@@ -1,7 +1,6 @@
 import { METHODS, BACKEND_HOST } from './defaults';
-import type { GetOptions, BodyOptions, RequestOptions } from './types';
+import type { GetOptions, BodyOptions, RequestOptions, HTTPMethod } from './types';
 import { queryStringify } from './helpers';
-
 export class HTTPTransport {
   private baseURL: string;
 
@@ -9,19 +8,19 @@ export class HTTPTransport {
     this.baseURL = `${BACKEND_HOST}${basePath}`;
   }
 
-  get = (url: string, options: GetOptions = {}) => {
+  get: HTTPMethod<GetOptions> = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
   };
 
-  post = (url: string, options: BodyOptions = {}) => {
+  post: HTTPMethod<BodyOptions> = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
   };
 
-  put = (url: string, options: BodyOptions = {}) => {
+  put: HTTPMethod<BodyOptions> = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
   };
 
-  delete = (url: string, options: BodyOptions = {}) => {
+  delete: HTTPMethod<BodyOptions> = (url, options = {}) => {
     return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
   };
 
