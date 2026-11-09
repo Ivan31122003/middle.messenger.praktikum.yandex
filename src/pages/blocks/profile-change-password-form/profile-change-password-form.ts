@@ -5,11 +5,12 @@ import { Block } from '@/core/block';
 import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
 import { validateForm, isValidatorName } from '@/modules/validation';
-
-import { mockUser } from '@/store/user';
+import { userController } from '@/controllers/user';
+import { message } from '@/components/pr-message';
 
 export class ProfileChangePasswordForm extends Block<Props> {
   static componentName = 'ProfileChangePasswordForm';
+  private unsubscribe: (() => void) | undefined;
   protected template = ProfileChangePasswordFormTemplate;
 
   protected events = {
@@ -33,7 +34,7 @@ export class ProfileChangePasswordForm extends Block<Props> {
         errorMessage,
       });
     },
-    submit: (e: Event) => {
+    submit: async (e: Event) => {
       e.preventDefault();
 
       const form = e.currentTarget;
@@ -63,12 +64,32 @@ export class ProfileChangePasswordForm extends Block<Props> {
         return;
       }
 
-      console.log(values);
+      const result = await userController.updatePassword({
+        oldPassword: values.old_password,
+        newPassword: values.password,
+      });
+
+      if (result.ok) {
+        message.success('Пароль успешно обновлен');
+      } else {
+        message.error(result.reason);
+      }
     },
   };
 
   constructor() {
-    const props: Props = { user: mockUser };
+    const props: Props = { user: userController.getUser() };
     super(props);
+  }
+
+  protected componentDidMount() {
+    this.unsubscribe = userController.subscribe(() => {
+      this.setProps({ user: userController.getUser() });
+    });
+  }
+
+  protected componentWillUnmount() {
+    this.unsubscribe?.();
+    this.unsubscribe = undefined;
   }
 }

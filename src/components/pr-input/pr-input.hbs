@@ -12,7 +12,5 @@
     type="{{#if type}}{{type}}{{else}}text{{/if}}"
     placeholder="{{#if (eq variant "field")}}{{else}}{{placeholder}}{{/if}}"
   />
-  {{#if errorMessage}} 
-    <p class="pr-input__validation-error-text">{{errorMessage}}</p>
-  {{/if}} 
+  <p class="pr-input__validation-error-text" {{#unless errorMessage}}hidden{{/unless}}>{{errorMessage}}</p>
 </div>

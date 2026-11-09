@@ -6,17 +6,13 @@ import { Block } from '@/core';
 import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
 import { validateForm, isValidatorName } from '@/modules/validation';
-
-import { mockUser } from '@/store/user';
+import { userController } from '@/controllers/user';
+import { message } from '@/components/pr-message';
 
 export class ProfileChangeDataForm extends Block<Props> {
   static componentName = 'ProfileChangeDataForm';
+  private unsubscribe: (() => void) | undefined;
   protected template = ProfileChangeDataFormTemplate;
-
-  constructor() {
-    const props: Props = { fields: FIELDS, user: mockUser };
-    super(props);
-  }
 
   protected events = {
     focusout: (event: Event) => {
@@ -39,7 +35,7 @@ export class ProfileChangeDataForm extends Block<Props> {
         errorMessage,
       });
     },
-    submit: (e: Event) => {
+    submit: async (e: Event) => {
       e.preventDefault();
 
       const form = e.currentTarget;
@@ -72,7 +68,36 @@ export class ProfileChangeDataForm extends Block<Props> {
         return;
       }
 
-      console.log(values);
+      const result = await userController.updateData({
+        first_name: values.first_name,
+        second_name: values.second_name,
+        display_name: values.display_name,
+        login: values.login,
+        email: values.email,
+        phone: values.phone,
+      });
+
+      if (result.ok) {
+        message.success('Данные успешно сохранены');
+      } else {
+        message.error(result.reason);
+      }
     },
   };
+
+  constructor() {
+    const props: Props = { fields: FIELDS, user: userController.getUser() };
+    super(props);
+  }
+
+  protected componentDidMount() {
+    this.unsubscribe = userController.subscribe(() => {
+      this.setProps({ user: userController.getUser() });
+    });
+  }
+
+  protected componentWillUnmount() {
+    this.unsubscribe?.();
+    this.unsubscribe = undefined;
+  }
 }

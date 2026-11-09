@@ -1,6 +1,6 @@
-import type { ContactItemProps } from '@/pages/blocks';
+import type { Chat } from '@/types';
 import type { BlockOwnProps } from '@/core/block';
 
 export interface Props extends BlockOwnProps {
-  contacts: ContactItemProps[];
+  contacts: Chat[];
 }

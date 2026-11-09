@@ -30,7 +30,8 @@
     font-weight: 500;
   }
 
-  &__search-wrapper {
+  &__search-wrapper,
+  &__create-chat-wrapper {
     margin-top: 23px;
   }
 }

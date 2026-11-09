@@ -1,4 +1,3 @@
 export { registerHelpers } from './helpers';
-export { registerComponent } from './helpers'
-export { renderRoute } from './router';
+export { registerComponent } from './helpers';
 export { Block } from './block';

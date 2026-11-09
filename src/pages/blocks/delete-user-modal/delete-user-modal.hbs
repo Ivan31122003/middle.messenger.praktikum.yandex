@@ -1,0 +1,18 @@
+<form class="delete-user-modal">
+  <span>Пользователи в чате</span>
+  <ul class="delete-user-modal__users-list">
+    {{#each users}}
+      <li>{{login}}</li>
+    {{/each}}
+  </ul>
+  {{{PrInput
+    ref="user-login"
+    id="delete-user-modal__user-login"
+    name="user-login"
+    variant="field"
+    placeholder="Введите логин пользователя"
+  }}}
+  <div class="delete-user-modal__button-wrapper">
+    {{{PrButton id="delete-user-modal__delete-user" type="submit" text="Удалить пользователя"}}}
+  </div>
+</form>

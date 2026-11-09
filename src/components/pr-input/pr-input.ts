@@ -12,4 +12,33 @@ export class PrInput extends Block<Props> {
     const propsWithDefaults = { ...DEFAULT_PROPS, ...props };
     super(propsWithDefaults);
   }
+
+  public override setProps(props: Partial<Props>): void {
+    const updatesFieldState = Object.keys(props).every(
+      (key) => key === 'value' || key === 'errorMessage',
+    );
+
+    if (!updatesFieldState) {
+      super.setProps(props);
+      return;
+    }
+
+    this.props = { ...this.props, ...props };
+
+    const root = this.element();
+    const input = root.querySelector('input');
+    const error = root.querySelector<HTMLElement>('.pr-input__validation-error-text');
+
+    if (input && 'value' in props) {
+      const value = this.props.value ?? '';
+      if (input.value !== value) {
+        input.value = value;
+      }
+    }
+
+    if (error) {
+      error.textContent = this.props.errorMessage ?? '';
+      error.hidden = !this.props.errorMessage;
+    }
+  }
 }

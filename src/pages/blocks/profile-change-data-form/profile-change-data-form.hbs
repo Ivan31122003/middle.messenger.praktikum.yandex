@@ -1,6 +1,8 @@
-{{#with user}}
-  <form id="profile-change-data-form" class="profile-change-data-form">
-    {{{ PrAvatar avatar=avatar }}}
+<form id="profile-change-data-form" class="profile-change-data-form">
+  {{#with user}}
+    <div class="profile-change-data-form__avatar">
+      {{{ PrAvatar isChangeable=true avatar=avatar }}}
+    </div>
     <div class="profile-change-data-form__fields">
       {{#each ../fields}}
         <div class="profile-change-data-form__field-wrapper">
@@ -11,5 +13,6 @@
     <div class="profile-change-data-form__button-wrapper">
       {{{ PrButton type="submit" text="Сохранить"}}}
     </div>
-  </form>
-{{/with}}
+  {{/with}}
+</form>
+

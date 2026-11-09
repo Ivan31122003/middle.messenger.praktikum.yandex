@@ -34,6 +34,14 @@ export abstract class Block<Props extends BlockOwnProps = object> {
     return this.domElement;
   }
 
+  public show(): void {
+    this.element().removeAttribute('hidden');
+  }
+
+  public hide(): void {
+    this.element().setAttribute('hidden', '');
+  }
+
   private compile() {
     const html = Handlebars.compile(this.template)(this.props);
 
@@ -86,7 +94,6 @@ export abstract class Block<Props extends BlockOwnProps = object> {
 
   private unmountComponent() {
     if (this.domElement) {
-      /** Вызываем очистку в порядке, обратном созданию */
       this.children.toReversed().forEach((child) => child.unmountComponent());
       this.componentWillUnmount();
       this.removeListeners();

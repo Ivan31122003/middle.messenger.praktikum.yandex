@@ -6,6 +6,9 @@ import { Block } from '@/core';
 import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
 import { validateForm, isValidatorName } from '@/modules/validation';
+import { router } from '@/core/navigation';
+import { authController } from '@/controllers/auth';
+import { message } from '@/components/pr-message';
 
 export class RegForm extends Block<Props> {
   static componentName = 'RegForm';
@@ -32,7 +35,7 @@ export class RegForm extends Block<Props> {
         errorMessage,
       });
     },
-    submit: (e: Event) => {
+    submit: async (e: Event) => {
       e.preventDefault();
 
       const form = e.currentTarget;
@@ -66,7 +69,21 @@ export class RegForm extends Block<Props> {
         return;
       }
 
-      console.log(values);
+      const resultSignUp = await authController.signUp({
+        first_name: values.first_name,
+        second_name: values.second_name,
+        login: values.login,
+        email: values.email,
+        password: values.password,
+        phone: values.phone,
+      });
+
+      if (!resultSignUp.ok) {
+        message.error(resultSignUp.reason);
+        return;
+      }
+
+      await router.go('/messenger');
     },
   };
 
