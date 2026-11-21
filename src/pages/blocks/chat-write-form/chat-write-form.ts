@@ -4,6 +4,7 @@ import { Block } from '@/core/block';
 import { PrInput } from '@/components';
 import { validators } from '@/modules/validation/validator';
 import { validateForm, isValidatorName } from '@/modules/validation';
+import { messageController } from '@/controllers/message';
 
 export class ChatWriteForm extends Block {
   static componentName = 'ChatWriteForm';
@@ -58,7 +59,12 @@ export class ChatWriteForm extends Block {
         return;
       }
 
-      console.log(values);
+      const message = values.message;
+
+      if (typeof message === 'string' && message.trim()) {
+        messageController.sendMessage(message);
+        form.reset();
+      }
     },
   };
 

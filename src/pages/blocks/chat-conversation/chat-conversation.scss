@@ -5,6 +5,7 @@
   flex-direction: column;
 
   &__date-wrapper {
+    margin: 20px 0;
     text-align: center;
   }
 
@@ -15,6 +16,7 @@
   }
 
   &__message-row {
+    margin-bottom: 10px;
     display: flex;
 
     &--mine {

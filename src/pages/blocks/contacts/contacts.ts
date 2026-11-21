@@ -9,8 +9,29 @@ export class Contacts extends Block<Props> {
   static componentName = 'Contacts';
   protected template = ContactsTemplate;
   private unsubscribe: (() => void) | undefined;
+  private searchTimer: ReturnType<typeof setTimeout> | undefined;
+  private searchVersion = 0;
+  private searchValue = '';
 
   protected events = {
+    input: (e: Event) => {
+      const input = e.target;
+      if (!(input instanceof HTMLInputElement) || input.id !== 'contacts__search') return;
+
+      const previousTitle = this.searchValue.trim();
+      this.searchValue = input.value;
+      const title = input.value.trim();
+      if (title === previousTitle) return;
+
+      clearTimeout(this.searchTimer);
+      const version = ++this.searchVersion;
+
+      this.searchTimer = setTimeout(() => {
+        void chatController.searchChats(title, () => {
+          return version === this.searchVersion;
+        });
+      }, 300);
+    },
     click: (e: Event) => {
       if (!(e.target instanceof Element)) {
         return;
@@ -35,13 +56,27 @@ export class Contacts extends Block<Props> {
 
   protected componentDidMount() {
     this.unsubscribe = chatController.subscribeChats(() => {
+      const input = this.element().querySelector<HTMLInputElement>('#contacts__search');
+      const focused = document.activeElement === input;
+      const start = input?.selectionStart ?? null;
+      const end = input?.selectionEnd ?? null;
       this.setProps({
         contacts: chatController.getChats() ?? [],
       });
+      const updated = this.element().querySelector<HTMLInputElement>('#contacts__search');
+      if (updated) {
+        updated.value = this.searchValue;
+        if (focused) {
+          updated.focus();
+          updated.setSelectionRange(start, end);
+        }
+      }
     });
   }
 
   protected componentWillUnmount() {
+    clearTimeout(this.searchTimer);
+    this.searchVersion++;
     this.unsubscribe?.();
     this.unsubscribe = undefined;
   }
