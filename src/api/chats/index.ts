@@ -1,2 +1,2 @@
 export { chatAPI } from './chats';
-export type { CreateChat, DeleteChat, AddChatUser } from './types';
+export type { CreateChat, DeleteChat, AddChatUser, GetChatToken } from './types';

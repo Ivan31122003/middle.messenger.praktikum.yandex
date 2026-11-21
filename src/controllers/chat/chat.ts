@@ -1,11 +1,22 @@
 import { chatAPI } from '@/api/chats';
 import { userAPI } from '@/api/user';
-import type { Chat } from '@/types';
+import { messageController } from '@/controllers/message';
+import type { User, Chat } from '@/types';
 import type { CreateChat } from '@/api/chats';
 import type { SearchUser } from '@/api/user';
 import { store } from '@/core/store';
 
 class ChatController {
+  async searchChats(title: string, isCurrent: () => boolean) {
+    const result = await chatAPI.getChats(title ? { title } : undefined);
+
+    if (result.ok && isCurrent()) {
+      store.setState('chats', result.data);
+    }
+
+    return result;
+  }
+
   getChats(): Chat[] | null {
     return (store.getState().chats as Chat[]) ?? null;
   }
@@ -14,7 +25,7 @@ class ChatController {
     return (store.getState().activeChat as Chat | undefined) ?? null;
   }
 
-  setActiveChat(id?: number) {
+  async setActiveChat(id?: number) {
     let activeChat: Chat | undefined;
 
     if (id !== undefined) {
@@ -23,7 +34,37 @@ class ChatController {
       activeChat = (store.getState().chats as Chat[]).at(0);
     }
 
-    store.setState('activeChat', activeChat);
+    const currentActiveChatId = (store.getState().activeChat as Chat | undefined)?.id ?? null;
+
+    if (activeChat && activeChat.id !== currentActiveChatId) {
+      store.setState('activeChat', activeChat);
+      messageController.disconnect();
+      const success = await this.getChatToken();
+
+      if (success) {
+        const userId = (store.getState().user as User).id;
+        const chatId = (store.getState().activeChat as Chat).id;
+        const chatToken = store.getState().chatToken;
+
+        messageController.connect(`ws/chats/${userId}/${chatId}/${chatToken}`);
+      }
+    }
+  }
+
+  async getChatToken() {
+    const activeChat = store.getState().activeChat as Chat | undefined;
+
+    if (!activeChat) {
+      return false;
+    }
+
+    const result = await chatAPI.getChatToken({ chatId: activeChat.id });
+
+    if (result.ok) {
+      store.setState('chatToken', result.data?.token);
+    }
+
+    return result.ok;
   }
 
   subscribeChats(listener: () => void): () => void {
@@ -51,17 +92,15 @@ class ChatController {
       }
     });
   }
+
   async fetchChats() {
     const result = await chatAPI.getChats();
 
     if (result.ok) {
       const activeChatId = this.getActiveChat()?.id;
 
-      const activeChat =
-        result.data.find((chat) => chat.id === activeChatId) ?? result.data.at(0) ?? null;
-
       store.setState('chats', result.data);
-      store.setState('activeChat', activeChat);
+      await this.setActiveChat(activeChatId);
     }
 
     return result;

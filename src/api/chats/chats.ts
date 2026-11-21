@@ -1,5 +1,13 @@
 import type { ApiVoidResult, User, Chat } from '@/types';
-import type { CreateChat, DeleteChat, AddChatUser, DeleteChatUser, ChatUsers } from './types';
+import type {
+  GetChats,
+  CreateChat,
+  DeleteChat,
+  AddChatUser,
+  DeleteChatUser,
+  ChatUsers,
+  GetChatToken,
+} from './types';
 import { HTTPTransport } from '@/core/http';
 import type { ApiResult } from '@/types';
 import { getErrorReason } from '@/api/helpers';
@@ -7,9 +15,9 @@ import { getErrorReason } from '@/api/helpers';
 const chatAPIInstance = new HTTPTransport('/api/v2/chats');
 
 class ChatAPI {
-  async getChats(): Promise<ApiResult<Chat[]>> {
+  async getChats(params?: GetChats): Promise<ApiResult<Chat[]>> {
     try {
-      const chats = (await chatAPIInstance.get('')) as Chat[];
+      const chats = (await chatAPIInstance.get('', { data: params })) as Chat[];
       return { ok: true, data: chats };
     } catch (e) {
       return {
@@ -82,6 +90,21 @@ class ChatAPI {
         data,
       })) as User[];
       return { ok: true, data: chatUsers };
+    } catch (e) {
+      return { ok: false, reason: getErrorReason(e) };
+    }
+  }
+
+  async getChatToken(data: GetChatToken) {
+    try {
+      const chatToken = (await chatAPIInstance.post(`/token/${data.chatId}`)) as {
+        token: number;
+      };
+
+      return {
+        ok: true,
+        data: chatToken,
+      };
     } catch (e) {
       return { ok: false, reason: getErrorReason(e) };
     }
